@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.UserDao">
+    <select id="queryAllUser" resultType="User">
+      select id,name,photoNum,password,farmington,sex,photo,localtion,province,city,description,guruid,status,date
+      from cmfz_user
+    </select>
+    <select id="queryCount1" parameterType="int" resultType="int">
+        <![CDATA[SELECT count(*) FROM cmfz_user WHERE YEARWEEK(date_format(date,'%Y-%m-%d')) = YEARWEEK(now())-#{count};]]>
+    </select>
+    <select id="queryAllProvince" resultType="String">
+        select province from cmfz_user;
+    </select>
+    <select id="queryCity" parameterType="String" resultType="int">
+        select count(*) from cmfz_user where province=#{province}
+    </select>
+    <insert id="insertUser" parameterType="User">
+        insert into cmfz_user values(
+        #{id},
+        #{name},
+        #{photoNum},
+        #{password},
+        #{farmington},
+        #{sex},
+        #{photo},
+        #{localtion},
+        #{province},
+        #{city},
+        #{description},
+        #{guruid},
+        #{status},
+        #{date})
+    </insert>
+    <delete id="deleteUser" parameterType="int">
+        delete from  cmfz_user where id=#{id}
+    </delete>
+    <select id="queryOneUser" parameterType="String" resultType="User">
+        select * from cmfz_user where photoNum=#{photoNum}
+    </select>
+    <select id="queryOneUserById" parameterType="String" resultType="User">
+        select * from cmfz_user where id=#{id}
+    </select>
+    <update id="frontUpdateUser" parameterType="User">
+       update cmfz_user set
+       name=#{name},
+       photoNum=#{photoNum},
+       password=#{password},
+       farmington=#{farmington},
+       sex=#{sex},
+       photo=#{photo},
+       localtion=#{localtion},
+       province=#{province},
+       city=#{city},
+       description=#{description},
+       guruid=#{guruid},
+       status=#{status},
+       date=#{date}
+      where id=#{id}
+    </update>
+    <select id="queryUserNotMi" parameterType="String" resultType="User">
+        select * from cmfz_user where id!=#{id}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

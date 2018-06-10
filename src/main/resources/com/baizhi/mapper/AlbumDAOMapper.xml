@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.AlbumDao">
+    <resultMap id="al" type="Album">
+        <id column="aid" property="id"/>
+        <result column="name" property="name"/>
+        <result column="score" property="score"/>
+        <result column="announcer" property="announcer"/>
+        <result column="episode" property="episode"/>
+        <result column="introduce" property="introduce"/>
+        <result column="date" property="date"/>
+        <result column="cover" property="cover"/>
+        <result column="downloadcodes" property="downloadcodes"/>
+        <collection property="children" ofType="Chapter">
+            <id column="cid" property="id"/>
+            <result column="cname" property="name"/>
+            <result column="download_url" property="download_url"/>
+            <result column="size" property="size"/>
+            <result column="length" property="length"/>
+            <result column="album_id" property="album_id"/>
+        </collection>
+    </resultMap>
+    <select id="queryAllAlbum" resultMap="al">
+        select album.id aid,album.name,album.score,album.announcer,album.episode,album.introduce,album.date,album.cover,album.downloadcodes,
+        chapter.id cid,chapter.name cname ,chapter.download_url,chapter.size,chapter.length,chapter.album_id
+        from cmfz_album album LEFT JOIN cmfz_chapter chapter
+				on album.id =chapter.album_id
+    </select>
+    <select id="queryAlbumByTime" resultType="Album">
+      select a1.id, a1.name , a1.score , a1.announcer ,a1.episode , a1.introduce , a1.date , a1.cover , a1.downloadcodes
+      from(select id, name , score , announcer ,episode , introduce , date , cover , downloadcodes
+      from cmfz_album ORDER BY date desc)a1
+      LIMIT 0,6 ;
+    </select>
+    <insert id="insertAlbum" parameterType="Album">
+        insert into cmfz_album values(#{id},#{name},#{score},#{author},#{announcer},#{episode},#{introduce},#{date},#{cover},#{downloadcodes})
+    </insert>
+    <delete id="deleteAlbum" parameterType="String">
+        delete from cmfz_album
+        where id=#{id}
+    </delete>
+    <update id="updateAlbum" parameterType="Album">
+        update cmfz_album set episode=#{episode},downloadcodes=#{downloadcodes} where id=#{id}
+    </update>
+    <select id="queryAlbumById" parameterType="String" resultType="Album">
+        select * from cmfz_album where id=#{id}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

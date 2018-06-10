@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.dao.ArticleDao">
+    <select id="queryAllArticle" resultType="Article">
+        select id,name,photoPath,text,illuStration,ext,download,guruid
+        from cmfz_article
+    </select>
+    <select id="queryArticleByGuruId" parameterType="String" resultType="Article">
+        select id,name,photoPath,text,illuStration,ext,download,guruid
+        from cmfz_article
+        where guruid=#{guruid}
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

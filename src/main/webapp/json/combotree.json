@@ -1,0 +1,54 @@
+[
+  {
+    "id": "customer",
+    "text": "请选择",
+    "iconCls": "icon-add",
+    "state": "open",
+    "children": [
+      {
+        "text": "编号",
+        "id": "id"
+      },
+      {
+        "text": "名字",
+        "id": "name"
+      },
+      {
+        "text": "电话号",
+        "id": "photoNum"
+      },
+      {
+        "text": "法号",
+        "id": "farmington"
+      },
+      {
+        "text": "性别",
+        "id": "sex"
+      },
+      {
+        "text": "头像",
+        "id": "photo"
+      },
+      {
+        "text": "地区",
+        "id": "localtion"
+      },
+      {
+        "text": "省份",
+        "id": "province"
+      },
+      {
+        "text": "城市",
+        "id": "city"
+      },
+      {
+        "text": "自我介绍",
+        "id": "description"
+      },
+      {
+        "text": "日期",
+        "id": "date"
+      }
+    ]
+  }
+]
