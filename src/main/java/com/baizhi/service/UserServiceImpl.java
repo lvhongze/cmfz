@@ -2,6 +2,7 @@ package com.baizhi.service;
 
 import com.baizhi.dao.UserDao;
 import com.baizhi.entity.User;
+import com.baizhi.objcetAdvices.LogAnnotation;
 import com.baizhi.util.Md5Util;
 import com.baizhi.util.Poi;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @LogAnnotation(name="添加用户")
     public User insertUser(String photoNum,String password) {
         User user = userDao.queryOneUser(photoNum);
         if (user!=null){
@@ -60,6 +62,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @LogAnnotation(name="删除用户")
     public void deleteUser(String id) {
         userDao.deleteUser(id);
     }
@@ -76,6 +79,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    @LogAnnotation(name="修改用户")
     public void frontUpdateUser(User user) {
         User user1 = userDao.queryOneUser(user.getId());
         user.setStatus(user1.getStatus());

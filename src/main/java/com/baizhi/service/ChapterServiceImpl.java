@@ -2,6 +2,7 @@ package com.baizhi.service;
 
 import com.baizhi.dao.ChapterDao;
 import com.baizhi.entity.Chapter;
+import com.baizhi.objcetAdvices.LogAnnotation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +14,7 @@ public class ChapterServiceImpl implements ChapterService{
     private ChapterDao chapterDao;
 
     @Override
+    @LogAnnotation(name="添加音频章节")
     public void insertChapter(Chapter chapter) {
         chapterDao.insertChapter(chapter);
     }
