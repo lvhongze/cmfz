@@ -30,11 +30,13 @@ public class AlbumController {
         map.put("rows",albums);
         return map;
     }
+
     @RequestMapping(value = "/queryAlbumById")
     public Album queryAlbumById(String id){
         Album album = albumService.queryAlbumById(id);
         return album;
     }
+
     @RequestMapping(value = "insertAlbum")
     public void insertAlbumController(MultipartFile image, Album album, HttpServletRequest request) throws IOException {
         String realPath = request.getSession().getServletContext().getRealPath("/album-photo");
